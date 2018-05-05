@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+}
+header{
+    width: 100%;
+    background-color: #333333;
+}
+.head{
+    width: 960px;
+    margin: 0 auto;
+}
+.link{
+    float: right;
+}
+.link a{
+    color: white;
+}
+.logo{
+     color: white;
+     padding: 15px 10px;
+}
+.banner{
+    width: 100%;
+    background-color: #66BB33;
+    height: 200px;
+}
