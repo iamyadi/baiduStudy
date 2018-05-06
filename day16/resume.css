@@ -1,0 +1,59 @@
+*{
+    margin:20px auto;
+    width:80%;
+}
+body{
+    background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524823633308&di=a2de3d8ec2c6e0a08f551e7cc046afe3&imgtype=0&src=http%3A%2F%2Fpic18.nipic.com%2F20120127%2F1369025_005530756187_2.jpg);
+    background-repeat:no-repeat;
+    border-style:dashed;
+    background-position:top;
+    background-size:cover;
+}
+h1{
+    text-align:center;
+    font-size: 40px;
+    text-shadow: darkseagreen 5px 5px 5px;
+}
+h2{
+    font-size: larger;
+    letter-spacing: 10px;
+    text-shadow: darkseagreen 5px 5px 5px;
+}
+p{
+    line-height:1.5;
+    font-weight: bold;
+    margin-top:20px;
+    padding-top:40px;
+}
+a{
+    text-decoration: none;
+    color: darkgreen;
+}
+a:hover{
+    color: dodgerblue;
+}
+a:visited{
+    color:red;
+}
+h3{
+    text-align:center;
+    text-shadow: darkseagreen 10px 10px 10px;
+}
+ul{
+    list-style-type:square;
+}
+dt{
+    font-weight:bold;
+    line-height:1.5;
+    text-shadow: green 0px 2px 2px;
+}
+dt+dd{
+    line-height:1.5;
+}
+img{
+    border-radius:50%;
+    height:200px;
+    width:200px;
+    float:right;
+    margin-right:60px;
+}
