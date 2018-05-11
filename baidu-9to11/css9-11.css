@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.header{
+    height: 1033px;
+    width: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url("http://pic.90sjimg.com/back_pic/u/00/00/95/36/55e6bb255921d.jpg");
+    /*background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526015064705&di=2be6a8bc5152717d87138ba20a721583&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fb21bb051f8198618b4505a5040ed2e738ad4e6cb.jpg");*/
+}
+h1{
+    font-size: 62px;
+    text-align: center;
+    width: 755px;
+    padding-top: 353px;
+    color: white;
+    margin:0 auto;
+}
+.text{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    padding: 70px 420px 0 420px;
+    line-height: 2;
+}
+.create{
+    color: white;
+    font-size: 16px;
+    padding-top: 15px;
+}
+.footer{
+    font-size: 12px;
+    color: silver;
+    padding-top: 10px;
+}
+.signUpForm{
+    margin: 50px 320px;
+    border: dimgrey solid 1px;
+    padding: 40px 40px;
+}
+.btnGroup{
+    width: 100%;
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+}
+input{
+    margin-right: 15px;
+    height: 30px;
+    font-size: 14px;
+    background-color:transparent;
+    border: silver solid 1px;
+
+    flex-grow: 2;
+}
+#btn{
+    background-color: white;
+    border-radius: 5px;
+    flex-grow: 0.7;
+    cursor: pointer;
+}
+.content{
+    padding: 40px;
+    margin-bottom: 40px;
+}
+.sectionH{
+    padding: 40px 0;
+}
+.singleContainer{
+    margin: 10px 200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.single{
+    width: 40%;
+    text-align: left;
+    margin-top: 20px;
+    flex-grow: 1.2;
+}
+.left{
+    width: 70px;
+    height: 70px;
+    float: left;
+    margin-right: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
