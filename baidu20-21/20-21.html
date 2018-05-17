@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20-21</title>
+</head>
+<body>
+    <input id="name" type="text">
+    <button id="submit-btn">Submit</button>
+
+<script>
+    let btn = document.getElementById('submit-btn')
+    let input = document.getElementById('name')
+    function outPut () {
+        let value = document.getElementById('name').value
+        console.log(value)
+    }
+    input.onkeyup = function enter (e){
+        if (e.keyCode===13){
+            let value = document.getElementById('name').value
+            console.log(value)
+        }
+        if(e.keyCode===27){
+            document.getElementById('name').value = ''
+        }
+    }
+    btn.addEventListener('click',outPut)
+</script>
+</body>
+</html>
