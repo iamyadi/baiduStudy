@@ -54,7 +54,7 @@ h1{
     justify-content:space-around;
 }
 input{
-    margin-right: 15px;
+    /*margin-right: 15px;*/
     height: 30px;
     font-size: 14px;
     background-color:transparent;
@@ -76,7 +76,7 @@ input{
     padding: 40px 0;
 }
 .singleContainer{
-    margin: 10px 200px;
+    margin: 10px 160px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -85,14 +85,184 @@ input{
 .single{
     width: 40%;
     text-align: left;
-    margin-top: 20px;
+    margin-top: 50px;
     flex-grow: 1.2;
+
 }
 .left{
-    width: 70px;
-    height: 70px;
+    width: 30px;
+    height: 40px;
     float: left;
     margin-right: 20px;
+}
+.right{
+    overflow: auto;
+}
+.sectionA{
+    background-image: url("./img/前端切图_0002s_0002s_0005_图层-2.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.sectionA input{
+    color: white;
+}
+.sectionA img{
+    padding: 20px 0 20px 40px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-top: gainsboro solid 1px;
+    border-bottom: gainsboro solid 1px;
+    border-left: gainsboro solid 1px;
+    border-bottom-left-radius: 35px;
+    border-top-left-radius: 35px;
+}
+.floatLeft{
+    text-align: left;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10%;
+}
+.floatLeft h2, .floatLeft p, .floatLeft div{
+    margin-top: 40px;
+}
+.floatLeft div input{
+    height: 40px;
+    text-align: center;
+    padding: 0 10px;
+}
+.floatLeft div input:hover{
+    color: black;
+    background-color: white;
+}
+.sectionB{
+    margin: 40px auto;
+    width: 80%;
+}
+
+.boxContainer{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+.box{
+    width: 25%;
+}
+.box img{
+    margin-bottom: 20px;
+}
+.sectionCInner{
+    width: 80%;
+    padding: 40px 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.img3{
+    width: 50%;
+    height: 350px;
+    margin: 30px 50px;
+}
+.text2{
+    width: 30%;
+    text-align: left;
+    margin: 50px 50px;
+}
+.sectionD{
+    width: 70%;
+    margin: 40px auto;
+    line-height: 1.5;
+}
+.crewBox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.crew{
+    position: relative;
+}
+.crew img{
+    width: 350px;
+    height: 300px;
+}
+.hidden{
+    background-color: black;
+    opacity: 0.5;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 300px;
+}
+.crew:hover .hidden{
+    display: block;
+}
+.hidden3{
+    display: flex;
+    justify-content: center;
+}
+.hidden3 a img{
+    padding: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: white solid 1px;
+    margin: 10px;
+}
+.hoverText{
+    padding-top: 30%;
+    color: white;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: darkgray solid 1px;
+    border-radius: 20px;
+    padding: 20px;
+    width: 40%;
+}
+.sectionE{
+    display: flex;
+    justify-content: space-around;
+    height: 500px;
+    padding: 30px;
+}
+.contacts{
+    padding-top: 10%;
+}
+.contacts img{
+    float: left;
+    padding-top: 15px;
+}
+.floatImg{
+    overflow: auto;
+}
+.contacts h2,.contacts p{
+    padding-top: 15px;
+}
+.form p,.form input, .form button,.form textarea{
+    margin-top: 20px;
+    flex-grow: 0;
+}
+footer{
+    width: 95%;
+    padding: 40px;
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    color: gray;
+}
+.footerBox>:first-child{
+    color: white;
+}
+.footerBox p{
+    padding-top: 15px;
 }
 
 
