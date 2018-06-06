@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>smile</title>
+    <style type="text/css">
+        .smile{
+            background-image: url("http://ife.baidu.com/2016/static/img/erik_ce204002.jpg");
+            height: 480px;
+            margin: 0 auto;
+            width: 480px;
+            background-position: 0;
+
+        }
+    </style>
 </head>
 <body>
-$END$
+<div class="smile" id="smile">
+</div>
+<script>
+    let div = document.getElementById('smile');
+    setInterval(()=>{
+        if(div.style['backgroundPositionY']!==''){
+            div.style['backgroundPositionY'] = parseInt(div.style['backgroundPositionY'])-480+'px'
+        }else{
+            div.style['backgroundPositionY']='480px';
+        }
+    },100)
+</script>
 </body>
 </html>

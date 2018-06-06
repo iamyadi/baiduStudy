@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+<input id="first-number" type="number"  placeholder="第一个数字">
+<input id="second-number" type="number"  placeholder="第二个数字">
+<button id="add-btn">加</button>
+<button id="minus-btn">减</button>
+<button id="times-btn">乘</button>
+<button id="divide-btn">除</button>
+<p id="result">运算结果</p>
+<script>
+
+    var add = document.getElementById('add-btn');
+        add.onclick = function () {
+            var first = document.getElementById('first-number').value;
+            var second = document.getElementById('first-number').value;
+            var minus = document.getElementById('minus-btn');
+            var times = document.getElementById('times-btn');
+            var divide = document.getElementById('divide-btn');
+            var result = document.getElementById('result');
+            result.innerText = (first + second);
+        }
+
+
+</script>
+</body>
+</html>
