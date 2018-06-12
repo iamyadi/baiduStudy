@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--计算结果显示在 id 为 result 的 P 标签中
+除了第一个按钮，其它按钮操作时，都需要判断输入是否为数字，否则在 console 中输出错误信息-->
+<div>
+    <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+    <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+</div>
+<div>
+    <button>判断当前选中的输入框输入内容是否为数字</button>
+    <button>把 A 四舍五入为 B 个小数位数的数字</button>
+    <button>当前选中数字的绝对值</button>
+    <button>对当前选中的数字进行上舍入</button>
+    <button>对当前选中的数字进行下舍入</button>
+    <button>把当前选中的数字四舍五入为最接近的整数</button>
+    <button>返回 A 和 B 中的最高值</button>
+    <button>返回 A 和 B 中的最低值</button>
+</div>
+<p id="result"></p>
+<script>
+    var A = document.getElementById('radio-a'),
+        B = document.getElementById('radio-b'),
+        p = document.getElementById('result'),
+        btnCollection = document.getElementsByTagName('button');
+    //判断是不是数字的方法
+     function numberVerify (value) {
+        var result = false;
+        if (Number(value)) {
+            result = true
+        }
+        return result
+    }
+    btnCollection[0].onclick = function () {
+        var Avalue = document.getElementById('num-a').value,
+            Bvalue = document.getElementById('num-b').value;
+        var result = false;
+        if (A.checked === true) {
+            result = numberVerify(Avalue);
+        } else if (B.checked === true) {
+            result = numberVerify(Bvalue)
+        }
+        if (result) {
+            p.innerHTML = '正确'
+        } else {
+            p.innerHTML = '错误'
+        }
+    };
+    btnCollection[1].onclick = function () {
+        var Avalue = document.getElementById('num-a').value,
+            Bvalue = document.getElementById('num-b').value;
+        var veryfyA = numberVerify(Avalue),
+            veryfyB = numberVerify(Bvalue);
+        if (veryfyA && veryfyB) {
+            p.innerText = Number(Avalue).toFixed(Number(Bvalue))
+        } else {
+            console.error('请输入数字')
+        }
+    };
+    btnCollection[2].onclick = function () {
+        var Avalue = document.getElementById('num-a').value,
+            Bvalue = document.getElementById('num-b').value;
+        var veryfyA = numberVerify(Avalue),
+            veryfyB = numberVerify(Bvalue);
+        if (A.checked && veryfyA) {
+            p.innerText = Math.abs(Avalue)
+        } else if (B.checked && veryfyB) {
+            p.innerText = Math.abs(Bvalue)
+        } else {
+            console.error('请输入数字')
+        }
+    };
+    btnCollection[3].onclick = function () {
+        var Avalue = document.getElementById('num-a').value,
+            Bvalue = document.getElementById('num-b').value;
+        var veryfyA = numberVerify(Avalue),
+            veryfyB = numberVerify(Bvalue);
+        if (A.checked && veryfyA) {
+            p.innerText = Math.ceil(Avalue)
+        } else if (B.checked && veryfyB) {
+            p.innerText = Math.ceil(Bvalue)
+        } else {
+            console.error('请输入数字')
+        }
+    };
+    btnCollection[4].onclick = function () {
+        var Avalue = document.getElementById('num-a').value,
+            Bvalue = document.getElementById('num-b').value;
+        var veryfyA = numberVerify(Avalue),
+            veryfyB = numberVerify(Bvalue);
+        if (A.checked && veryfyA) {
+            p.innerText = Math.floor(Avalue)
+        } else if (B.checked && veryfyB) {
+            p.innerText = Math.floor(Bvalue)
+        } else {
+            console.error('请输入数字')
+        }
+    };
+    btnCollection[5].onclick = function () {
+        var Avalue = document.getElementById('num-a').value,
+            Bvalue = document.getElementById('num-b').value;
+        var veryfyA = numberVerify(Avalue),
+            veryfyB = numberVerify(Bvalue);
+        if (A.checked && veryfyA) {
+            p.innerText = Math.round(Avalue)
+        } else if (B.checked && veryfyB) {
+            p.innerText = Math.round(Bvalue)
+        } else {
+            console.error('请输入数字')
+        }
+    };
+    btnCollection[6].onclick = function () {
+        var Avalue = document.getElementById('num-a').value,
+            Bvalue = document.getElementById('num-b').value;
+        var veryfyA = numberVerify(Avalue),
+            veryfyB = numberVerify(Bvalue);
+        if (veryfyB && veryfyA) {
+            p.innerText = Math.max(Avalue,Bvalue)
+        }
+         else {
+            console.error('请输入数字')
+        }
+    };
+    btnCollection[7].onclick = function () {
+        var Avalue = document.getElementById('num-a').value,
+            Bvalue = document.getElementById('num-b').value;
+        var veryfyA = numberVerify(Avalue),
+            veryfyB = numberVerify(Bvalue);
+        if (veryfyB && veryfyA) {
+            p.innerText = Math.min(Avalue,Bvalue)
+        }
+        else {
+            console.error('请输入数字')
+        }
+    };
+
+</script>
+</body>
+</html>

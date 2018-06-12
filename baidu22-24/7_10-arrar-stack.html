@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="stack-input" type="text">
+<p id="stack-cont">栈内容：apple-gt;pear</p>
+<button id="push-btn">进栈</button>
+<button id="pop-btn">退栈</button>
+<button id="font-btn">打印栈顶元素内容</button>
+<button id="empty-btn">判断栈是否为空</button>
+
+<script>
+
+    var stack = ["apple", "pear"];
+    var btn = document.getElementsByTagName('button');
+    btn[0].onclick = function () {
+        stack.push(document.getElementById('stack-input').value);
+        document.getElementById('stack-input').value = '';
+        document.getElementById('stack-cont').innerText = stack.join('->')
+    };
+    btn[1].onclick = function () {
+        stack.pop();
+        document.getElementById('stack-input').value = '';
+        document.getElementById('stack-cont').innerText = stack.join('->')
+    };
+    btn[2].onclick = function () {
+        document.getElementById('stack-input').value = '';
+        document.getElementById('stack-cont').innerText = stack[stack.length-1]
+    };
+    btn[3].onclick = function () {
+        if (stack.length===0) {
+            document.getElementById('stack-cont').innerText = 'kong'
+        }
+        document.getElementById('stack-cont').innerText = '不为空'
+    };
+</script>
+</body>
+</html>

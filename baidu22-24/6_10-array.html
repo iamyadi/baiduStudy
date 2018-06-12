@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="queue-input" type="text">
+<p id="queue-cont">队列内容：apple&lt;-pear</p>
+<button id="in-btn">入队</button>
+<button id="out-btn">出队</button>
+<button id="font-btn">打印队头元素内容</button>
+<button id="empty-btn">判断队列是否为空</button>
+
+<script>
+    // 队头对应数组中第一个元素
+    var queue = ["apple", "pear"];
+    var btnCollection = document.getElementsByTagName('button'),
+        p = document.getElementById('queue-cont');
+    btnCollection[0].onclick = function () {
+        queue.push(document.getElementById('queue-input').value);
+        pText = queue.join('->');
+        p.innerText = '队列内容: '+pText;
+        document.getElementById('queue-input').value = ''
+    };
+    btnCollection[1].onclick = function () {
+        queue.shift();
+        pText = queue.join('->');
+        p.innerText = '队列内容: '+pText;
+        document.getElementById('queue-input').value = ''
+    };
+    btnCollection[2].onclick = function () {
+        pText = queue[0];
+        p.innerText = '对头元素: '+pText
+    };
+    btnCollection[3].onclick = function () {
+        pText = queue.length;
+        if (pText===0) {
+            p.innerText = 'kong'
+        } else {
+            p.innerText = '不为空'
+        }
+    };
+</script>
+</body>
+</html>
