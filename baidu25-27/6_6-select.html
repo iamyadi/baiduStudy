@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="domSelect()">
+<div id="parent">
+
+
+<select id="year-select">
+
+</select>
+
+<select id="month-select">
+
+</select>
+
+<select id="day-select">
+
+</select>
+
+<select id="hour-select">
+
+</select>
+
+<select id="minite-select">
+
+</select>
+
+<select id="second-select">
+
+</select>
+</div>
+<p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+
+<script>
+function options(dom, startNum, endNum) {
+    var a = dom.innerHTML;
+    for (i=startNum; i<endNum+1; i++){
+        a += '<option value="'+i+'">'+ i + '</option>'
+    }
+    dom.innerHTML = a
+}
+function domSelect() {
+    var selectCollection = document.getElementsByTagName('select');
+    options(selectCollection[0],2000,2032);
+    options(selectCollection[1],1,12);
+    monthSelect();
+    options(selectCollection[3],1,24);
+    options(selectCollection[4],0,59);
+    options(selectCollection[5],0,59);
+}
+function monthSelect() {
+    var monthV = document.getElementById('month-select').value;
+    var monthValue = monthV? monthV:'2' ;
+    var yearValue = document.getElementById('year-select').value? document.getElementById('year-select').value:'2000';
+    var selectCollection = document.getElementById('day-select');
+    if (monthValue === '2') {
+        if((yearValue%100 === 0 && yearValue%400 === 0) || (yearValue%100 !== 0 && yearValue%4 === 0)){
+            options(selectCollection,1,29);
+        }
+    } else if ([1, 3, 5, 7, 8, 10, 12].includes(Number(monthValue))){
+        options(selectCollection,1,31);
+    } else {
+        options(selectCollection,1,30);
+    }
+}
+var parent = document.getElementById('parent');
+parent.addEventListener('change', monthSelect);
+parent.addEventListener('change',pText);
+function pText() {
+    var valueArr = getValue();
+    var text = '';
+    var today = new Date();
+    var todayArr = [];
+    var selectDay = new Date();
+    todayArr.push(today.getFullYear());
+    todayArr.push(today.getMonth());
+    todayArr.push(today.getDate());
+    todayArr.push(today.getHours());
+    todayArr.push(today.getMinutes());
+    todayArr.push(today.getSeconds());
+    selectDay.setFullYear(valueArr[0],valueArr[1]-1,valueArr[2]);
+    selectDay.setHours(valueArr[3]);
+    selectDay.setMinutes(valueArr[4]);
+    selectDay.setSeconds(valueArr[5]);
+    var milli = '';
+    if (today < selectDay) {
+        text = '还有';
+        milli = selectDay - today
+    } else {
+        text = '已经过去';
+        milli = today - selectDay
+    }
+    var date = selectDay.toLocaleDateString().substr(0,10);
+    var time = `${Math.floor(milli/1000/60/60/24)}天${Math.floor(milli%(1000*60*60*24)/1000/60/60)}小时${Math.floor((milli%(1000*60*60*24)%(1000*60*60))/1000/60)}分${Math.ceil(((milli%(1000*60*60*24)%(1000*60*60))%(1000*60))/1000)}秒`;
+    document.getElementById('result-wrapper').innerText = '现在距离 ' + date.replace(/\//g, '-') + week(selectDay)+selectDay.toLocaleTimeString()+ text + time
+}
+
+function week(date) {
+    var a = [
+        'sunday',
+        'Monday',
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
+    var num = date.getDay();
+    return a[num]
+
+}
+function getValue() {
+    var value = [];
+    var selectCollection = document.getElementsByTagName('select');
+    var selectArr = Array.prototype.slice.call(selectCollection);
+    for (select of selectArr) {
+        value.push(Number(select.value))
+    }
+    return value
+}
+</script>
+</body>
+</html>

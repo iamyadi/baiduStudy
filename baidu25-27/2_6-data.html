@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Date</title>
+    <script>
+        function startTime()
+        {
+            var today=new Date();
+            var h=today.getHours();
+            var m=today.getMinutes();
+            var s=today.getSeconds();
+            m = two(m);
+            s = two(s);
+            var year = today.getFullYear();
+            var weekday = week(today);
+            var month = today.getMonth() + 1;
+            var day = today.getDate();
+            var timeStr = h+":"+m+":"+s;
+            document.getElementById('date').innerHTML = final2(year,month,day,weekday,timeStr,h) + '<br>' + final(year,month,day,weekday,timeStr);
+            t=setTimeout('startTime()',500)
+        }
+        //补充2位
+        function two(x) {
+            x = x.toString();
+            x = x.padStart(2, '0');
+            return x
+        }
+        //返回星期几
+        function week(x) {
+            var weekday = [];
+            weekday[0]="星期日";
+            weekday[1]="星期一";
+            weekday[2]="星期二";
+            weekday[3]="星期三";
+            weekday[4]="星期四";
+            weekday[5]="星期五";
+            weekday[6]="星期六";
+            var num = x.getDay();
+            return weekday[num]
+        }
+        //拼格式
+        function final(year,month,day,week,time) {
+            return year + '年' + month +  '月' + day +'日' + week + ' ' + time
+        }
+        function final2(year, month, day, week, time,h) {
+            var map = {
+                '星期日':'sunday',
+                '星期一':'Monday',
+                '星期二': "Tuesday",
+                '星期三': "Wednesday",
+                '星期四': "Thursday",
+                '星期五': "Friday",
+                '星期五': "Saturday"
+            };
+            if (h<12) {
+                return year + '-' + month + '-'+ day + ' '+map[week]+' ' + time + ' AM'
+            } else {
+                return year + '-' + month + '-'+ day + ' '+map[week]+' ' + time + ' PM'
+
+            }
+
+        }
+    </script>
+</head>
+<body onload="startTime()">
+<div id="date">haha</div>
+
+</body>
+</html>
