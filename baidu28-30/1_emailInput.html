@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email</title>
+    <style>
+        #list {
+            list-style-type: none;
+            margin:0 0 0 -40px;
+        }
+        ul>li:hover{
+            background-color: aquamarine !important;
+        }
+    </style>
+</head>
+<body onload="onFocus()">
+<div>
+    <input id="input" type="text">
+    <ul id="list" class="email-sug"></ul>
+</div>
+
+<script>
+    //事件监听
+    var nowSelectTipIndex = 0;
+    var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+    document.getElementById('input').addEventListener('input', keyEvent);
+    var contentList = [];
+     function keyEvent () {
+        var value = getInputValue();
+        contentList = createContent(value);
+        addContent(contentList);
+        keyStyleController();
+        showContent(value);
+    };
+    //获取用户输入
+    getInputValue = function(){
+        var value = document.getElementById('input').value.trim();
+        //对用户输入进行转义
+        value = value.replace(/&/g,"&amp;");
+        value = value.replace(/</g,"&lt;");
+        value = value.replace(/>/g,"&gt;");
+        value = value.replace(/ /g,"&nbsp;");
+        value = value.replace(/"/g,'&quot;');
+        return value;
+        // return encodeURIComponent(value)
+    };
+    //生成提示框内容
+    createContent = function (value) {
+        var fixList = postfixList.slice();
+        var index =  value.indexOf('@');
+        var emailValue = '';
+        var newPostfixList = [];
+        //拼newPostfixList
+        if ( index !== -1) {
+            var originalValue = value;
+            value = value.slice(0, index);
+            emailValue = originalValue.slice(index+1);
+
+            for (var j=0; j<fixList.length; j++) {
+                if (fixList[j].slice(0, emailValue.length) === emailValue && emailValue) {
+                    newPostfixList.push(fixList[j])
+                }
+            }
+            if (newPostfixList.length === 0) {
+                newPostfixList = fixList
+            }
+        } else {
+            newPostfixList = fixList
+        }
+
+        //生成完整list
+        for (var i=0;i<newPostfixList.length;i++) {
+            newPostfixList[i] = value + '@' + newPostfixList[i]
+        }
+        return newPostfixList
+    };
+    //将生成内容添加到dom中
+    addContent = function (valueList) {
+        var li = '';
+         for (item of valueList) {
+            li += `<li>${item}</li>`
+         }
+        document.getElementById('list').innerHTML = li;
+    };
+    //键盘上下style控制
+    keyStyleController= function () {
+        var liDom = document.querySelectorAll('li');
+        for (var singleDom of liDom) {
+            singleDom.style.backgroundColor = 'white'
+        }
+        liDom[nowSelectTipIndex].style.backgroundColor='green'
+    };
+
+    //控制是否显示提示框
+    showContent = function (value) {
+        if (value) {
+            document.getElementById('list').style = 'display: block;'
+        } else {
+            document.getElementById('list').style = 'display: none;'
+        }
+        
+    };
+    //自动获取焦点事件
+    function onFocus() {
+        document.getElementById('input').focus()
+    }
+    //监听click事件，给input赋值
+    document.getElementById('list').addEventListener('click', ulClick);
+     function ulClick (e) {
+         var value = e.target.innerText;
+         value = value.replace(/&amp;/g,"&");
+         value = value.replace(/&lt;/g,"<");
+         value = value.replace(/&gt;/g,">");
+         value = value.replace(/&nbsp;/g," ");
+         value = value.replace(/&quot/g,"'");
+
+        document.getElementById('input').value = value;
+        document.getElementById('list').style = 'display: none;';
+         onFocus()
+    }
+    //监听键盘事件
+    document.getElementById('input').addEventListener('keydown', keyBoardEvent);
+    function keyBoardEvent(e){
+        var index = postfixList.length;
+         if (e.keyCode === 40) {//下
+             if (nowSelectTipIndex===index-1) {
+                nowSelectTipIndex = 0
+             } else {
+                 nowSelectTipIndex += 1
+             }
+             keyStyleController();
+             e.preventDefault()
+         } else if (e.keyCode === 38) {//上
+             if (nowSelectTipIndex === 0) {
+                 nowSelectTipIndex = index -1
+             } else {
+                 nowSelectTipIndex -= 1
+             }
+             keyStyleController();
+             e.preventDefault()
+         } else if (e.keyCode === 13) {//enter
+             document.getElementById('input').value = contentList[nowSelectTipIndex];
+             document.getElementById('list').style = 'display: none;';
+             onFocus()
+         } else if (e.keyCode === 27){//esc键
+             document.getElementById('input').select()
+         }
+    }
+</script>
+</body>
+</html>
