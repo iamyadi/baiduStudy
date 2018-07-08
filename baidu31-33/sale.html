@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SaleSale</title>
+<link rel="stylesheet" href="saleCSS.css">
+</head>
+
+<body onload="renderTable()">
+<!--表单-->
+<label>请选择地区：
+<select id="region-select">
+    <option value="select">请选择地区</option>
+    <option value="east">华东</option>
+    <option value="north">华北</option>
+    <option value="south">华南</option>
+</select>
+</label>
+
+<label>请选择商品种类：
+    <select id="commodity-select">
+        <option value="product">请选择商品</option>
+        <option value="cellphone">手机</option>
+        <option value="computer">笔记本</option>
+        <option value="audioEquipment">智能音箱</option>
+    </select>
+</label>
+
+<!--checkbox-->
+<div id="checkboxWrapper">
+    <div id="region-wrapper"></div>
+    <div id="product-wrapper"></div>
+</div>
+
+<!--table-->
+<div id="table-wrapper">
+</div>
+
+</body>
+
+<script src="saleJS/checkbox.js"></script>
+<script src="saleJS/table.js"></script>
+<script src="saleJS/dealCheckboxData.js"></script>
+<script src="saleJS/app.js"></script>
+</html>
