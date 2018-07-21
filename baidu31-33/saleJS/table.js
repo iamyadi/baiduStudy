@@ -1,8 +1,6 @@
 //table渲染模块
 function renderTable() {
-    // var tableData = handleCommodityData();
     var { tableData, regionLength, productLength } = handleDoubleData();
-
     //月份渲染
     var thCollection = '';
     for (var i=1; i<13; i++) {
@@ -40,18 +38,18 @@ function renderTable() {
         }
         if(regionLength === 1 && productLength > 1){ //地区一个，商品多个
             if (i === 0) {
-                tbodyRowString += '<tr><td class="rowspan" rowspan='+ productLength+'>' + singleRow.region + '</td><td>' + singleRow.product + '</td>' + saleString + '</td></tr>'
+                tbodyRowString += `<tr data-index=${i}>`+'<td class="rowspan" rowspan='+ productLength+'>' + singleRow.region + '</td><td>' + singleRow.product + '</td>' + saleString + '</td></tr>'
             } else {
-                tbodyRowString += '<tr><td>' + singleRow.product + '</td>' + saleString + '</tr>'
+                tbodyRowString += `<tr data-index=${i}>`+'<td>' + singleRow.product + '</td>' + saleString + '</tr>'
             }
         } else if (productLength === 1 && regionLength > 1) { //商品一个，地区多个
             if (i === 0) {
-                tbodyRowString += '<tr><td class="rowspan" rowspan='+ regionLength+'>' + singleRow.product + '</td><td>' + singleRow.region + '</td>' + saleString + '</td></tr>'
+                tbodyRowString += `<tr data-index=${i}>`+'<td class="rowspan" rowspan='+ regionLength+'>' + singleRow.product + '</td><td>' + singleRow.region + '</td>' + saleString + '</td></tr>'
             } else {
-                tbodyRowString += '<tr><td>' + singleRow.region + '</td>' + saleString + '</tr>'
+                tbodyRowString += `<tr data-index=${i}>`+'<td>' + singleRow.region + '</td>' + saleString + '</tr>'
             }
         } else if (productLength ===1 && regionLength === 1) { //都是一个
-            tbodyRowString += '<tr><td>' + singleRow.product + '</td><td>' +singleRow.region +'</td>' + saleString + '</tr>'
+            tbodyRowString += `<tr data-index=${i}>`+'<td>' + singleRow.product + '</td><td>' +singleRow.region +'</td>' + saleString + '</tr>'
         } else if (regionLength > 1 && productLength > 1) { //均选择了多个
             // 数据处理
             productGroup[singleRow.product].push(singleRow)
@@ -69,9 +67,9 @@ function renderTable() {
                         saleStr += '<td>' + saleValue + '</td>'
                     }
                     if (j === 0 ) {
-                        tbodyRowString += '<tr><td class="rowspan" rowspan='+ productGroup[key].length+'>' + single.product + '</td><td>' + single.region + '</td>' + saleStr + '</td></tr>'
+                        tbodyRowString += `<tr>`+'<td class="rowspan" rowspan='+ productGroup[key].length+'>' + single.product + '</td><td>' + single.region + '</td>' + saleStr + '</td></tr>'
                     } else {
-                        tbodyRowString += '<tr><td>' + single.region + '</td>' + saleStr + '</tr>'
+                        tbodyRowString += `<tr>`+'<td>' + single.region + '</td>' + saleStr + '</tr>'
                     }
                 }
             }

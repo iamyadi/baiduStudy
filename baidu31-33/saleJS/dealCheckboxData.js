@@ -26,6 +26,7 @@ function handleDoubleData() {
             }
         }
     }
+    console.log(data);
     return {
         tableData: data,
         regionLength: regionLength,

@@ -4,6 +4,29 @@
     <meta charset="UTF-8">
     <title>SaleSale</title>
 <link rel="stylesheet" type="text/css" href="saleCSS.css">
+    <style>
+        #svg1{
+            text-align: center;
+        }
+        #chart{
+            display: flex;
+        }
+        table, tbody{
+            border-collapse: collapse;
+            width: 80%;
+            margin: 30px auto;
+        }
+        tr:hover{
+            background-color: darkgrey;
+        }
+        table tr td, table tr th{
+            text-align: center;
+            border: black solid 2px;
+        }
+        td[rowspan]{
+            background-color: white !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,6 +55,18 @@
     <div id="product-wrapper"></div>
 </div>
 
+<div id="chart">
+<!--svg图1-->
+<div id="svg1">
+    <embed src="./baidu34-36(svg-canvas)/column.svg" id="embed" width="640" height="400"
+           type="image/svg+xml">
+</div>
+
+<canvas id="line" height="450" width="650"></canvas>
+
+</div>
+
+
 <!--table-->
 <div id="table-wrapper">
 </div>
@@ -41,5 +76,7 @@
 <script src="saleJS/checkbox.js"></script>
 <script src="saleJS/table.js"></script>
 <script src="saleJS/dealCheckboxData.js"></script>
+<script src="baidu34-36(svg-canvas)/bar.js"></script>
+<script src="./baidu34-36(svg-canvas)/line.js"></script>
 <script src="saleJS/app.js"></script>
 </html>

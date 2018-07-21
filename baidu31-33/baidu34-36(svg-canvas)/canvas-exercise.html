@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas-exercise</title>
+</head>
+<body>
+<canvas id="canvas-exercise" width="4000" height="5500">
+</canvas>
+
+<script>
+    var canvas = document.getElementById('canvas-exercise');
+    function draw() {
+        if (canvas.getContext){
+            var ctx= canvas.getContext('2d');
+
+            //画直线
+            ctx.beginPath();
+            ctx.moveTo(20, 20);
+            ctx.lineTo(280, 20);
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+            ctx.closePath();
+            //画矩形
+            ctx.fillStyle = 'orange';
+            ctx.fillRect(30,30, 250, 50);
+            //画圆形
+            ctx.beginPath();
+            ctx.arc(70, 140, 50, 0, 2*Math.PI);
+            ctx.fillStyle = 'blue';
+            ctx.fill();
+            //显示文字
+            ctx.font = '40px serif';
+            ctx.fillText('hello!!!', 20, 220);
+            //画一朵云
+            ctx.beginPath();
+            ctx.moveTo(20, 260);
+            ctx.bezierCurveTo(70, 220, 80, 220, 130,260);
+            ctx.bezierCurveTo(170, 200, 190, 200, 250, 240);
+            ctx.bezierCurveTo(270, 200, 290, 190, 290, 250);
+            ctx.bezierCurveTo(300, 290, 340, 260, 290, 320);
+            ctx.bezierCurveTo(250, 330, 220, 350, 200, 330);
+            ctx.bezierCurveTo(170, 300, 220, 300, 150, 330);
+            ctx.bezierCurveTo(70, 350, 90, 350, 20, 330);
+            ctx.bezierCurveTo(0,300, 0, 280, 20, 260);
+            ctx.closePath();
+
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = 'blue';
+            ctx.stroke();
+
+            ctx.fillStyle = '#8ED6FF';
+            ctx.fill();
+
+            //画一个时钟
+            //半径
+            var r = 130;
+            //重置原点
+            ctx.save();
+            ctx.translate(400, 500);
+            function drawClock() {
+                //时钟外圈
+                ctx.beginPath();
+                ctx.arc(0, 0, r, 0, 2*Math.PI);
+                ctx.strokeStyle = 'blue';
+                ctx.lineWidth = 5;
+                ctx.stroke();
+                ctx.closePath();
+
+                //圆心
+                ctx.beginPath();
+                ctx.arc(0,0,5,0, 2*Math.PI);
+                ctx.fillStyle = 'black';
+                ctx.lineWidth = 1;
+                ctx.fill();
+                ctx.closePath();
+
+                //画hour数字
+                var hour = [1,2,3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+                hour.forEach(function (value) {
+                    var xValue = (r-28)*Math.cos(Math.PI*(value-3)/6);
+                    var yValue = (r-28)*Math.sin(Math.PI*(value-3)/6);
+                    ctx.font = "18px sans-serif";
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.fillStyle = 'black';
+                    ctx.fillText(value, xValue, yValue);
+                });
+                //画刻度
+                for (var i=0; i<60; i++) {
+                    ctx.beginPath();
+                    var x = (r - 15)*Math.cos(i*2*Math.PI/60);
+                    var y = (r - 15)*Math.sin(i*2*Math.PI/60);
+                    if (i%5 === 0) {
+                        ctx.strokeStyle = "#000";
+                        ctx.arc(x, y, 2, 0, 2*Math.PI, true);
+                    } else {
+                        ctx.strokeStyle = "#bbb";
+                        ctx.arc(x, y, 2, 0, 2*Math.PI, true);
+                    }
+                    ctx.stroke();
+                    ctx.closePath();
+                }
+            }
+
+            function moveClock() {
+                let now = new Date();
+                let h = now.getHours();
+                ctx.save();
+                ctx.beginPath();
+                ctx.rotate(h*Math.PI/6);
+                ctx.moveTo(0,10);
+                ctx.lineTo(0, 55-r);
+                ctx.strokeStyle = 'blue';
+                ctx.lineWidth = 8;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                ctx.closePath();
+                ctx.restore();
+
+                //分针
+                var min = now.getMinutes();
+                ctx.save();
+                ctx.beginPath();
+                ctx.rotate(min*Math.PI/30);
+                ctx.moveTo(0,10);
+                ctx.lineTo(0, 40-r);
+                ctx.strokeStyle = 'green';
+                ctx.lineWidth = 8;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                ctx.closePath();
+                ctx.restore();
+
+                //s针
+                var s = now.getSeconds();
+                ctx.save();
+                ctx.beginPath();
+                ctx.rotate(s*Math.PI/30);
+                ctx.moveTo(0,10);
+                ctx.lineTo(0, 30-r);
+                ctx.strokeStyle = 'red';
+                ctx.lineWidth = 3;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                ctx.closePath();
+                ctx.restore();
+            }
+
+            setInterval(function () {
+                ctx.clearRect(-130,-130, 260, 260);
+                drawClock();
+                moveClock();
+            }, 1000);
+        }
+    }
+    draw()
+</script>
+</body>
+</html>

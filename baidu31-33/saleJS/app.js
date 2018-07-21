@@ -44,18 +44,55 @@ var regionWrapper = document.getElementById('region-wrapper');
 var productWrapper = document.getElementById('product-wrapper');
 var checkboxWrapper = document.getElementById('checkboxWrapper');
 
-//刷选表单模块
-regionSelect.onchange = function () {
-    renderTable()
+//select选项模块
+// regionSelect.onchange = function () {
+//     renderTable();
+// };
+// commoditySelect.onchange = function () {
+//     renderTable();
+// };
+
+//根据数据渲染
+function multiLine() {
+    var { tableData } = handleDoubleData();
+    var totalData = [];
+    for (var row of tableData) {
+        totalData.push(row.sale)
+    }
+    DrawLine.setData(totalData)
+}
+//当从table离开的时候，进行渲染
+tableWrapper.onmouseleave = function (ev) {
+    multiLine()
 };
-commoditySelect.onchange = function () {
-    renderTable()
-};
+//点击checkbox,渲染table，渲染折线图
 checkboxWrapper.onclick = function () {
-    renderTable()
+    renderTable();
+    multiLine()
 };
-
-
+// 当mouseover时候，渲染折线图
+tableWrapper.onmouseover = function (ev) {
+    var tr = ev.target.parentNode.children;
+    var result = [];
+    for (var td of tr) {
+        result.push(td.innerText)
+    }
+    var finalData = [];
+    for (var data of result) {
+        if (Number(data)) {
+            finalData.push(Number(data))
+        }
+    }
+    var doubleArray = [];
+        doubleArray.push(finalData);
+    if (finalData.length===0) {
+        DrawLine.setData();
+        drawColumn([120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270])
+    } else {
+        DrawLine.setData(doubleArray);
+        drawColumn(finalData)
+    }
+};
 
 //下面两个方法没有用上。这是上面select的方法。
 
