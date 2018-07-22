@@ -1,7 +1,12 @@
 //处理checkbox数据
 function handleDoubleData() {
     var data=[];
-    var tempData = sourceData.slice();
+    var tempData = '';
+    if (localStorage.getItem('totalData')) {
+        tempData = JSON.parse(localStorage.getItem('totalData'))
+    } else {
+        tempData = sourceData.slice();
+    }
     var regionAllDom = regionWrapper.querySelectorAll('input');
     var regionCheckedValue = [];
     for (var regionDom of regionAllDom) {
@@ -26,7 +31,6 @@ function handleDoubleData() {
             }
         }
     }
-    console.log(data);
     return {
         tableData: data,
         regionLength: regionLength,

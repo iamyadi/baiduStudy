@@ -1,5 +1,5 @@
 
-var sourceData = [
+var sourceData = [ // 嗯 对 去localStorage里拿 不是 没有先存进去再拿 对  为啥都换成input 为啥这么干 昨天不是取过吗 一行的数据啊
     {
         product: "手机",
         region: "华东",
@@ -68,31 +68,11 @@ tableWrapper.onmouseleave = function (ev) {
 //点击checkbox,渲染table，渲染折线图
 checkboxWrapper.onclick = function () {
     renderTable();
+    creatInputDom();
+    inputOnblur();
     multiLine()
 };
-// 当mouseover时候，渲染折线图
-tableWrapper.onmouseover = function (ev) {
-    var tr = ev.target.parentNode.children;
-    var result = [];
-    for (var td of tr) {
-        result.push(td.innerText)
-    }
-    var finalData = [];
-    for (var data of result) {
-        if (Number(data)) {
-            finalData.push(Number(data))
-        }
-    }
-    var doubleArray = [];
-        doubleArray.push(finalData);
-    if (finalData.length===0) {
-        DrawLine.setData();
-        drawColumn([120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270])
-    } else {
-        DrawLine.setData(doubleArray);
-        drawColumn(finalData)
-    }
-};
+
 
 //下面两个方法没有用上。这是上面select的方法。
 
