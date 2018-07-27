@@ -1,11 +1,11 @@
 //渲染chexkbox， 并且绑定事件
 createCheckBox = function (domId, valueArr) {
-    var selectAll = {value: 1, text: '全选'};
+    var selectAll = {value: 'checkedAll', text: '全选'};
     var wrapper = document.getElementById(domId);
     valueArr.unshift(selectAll);
     var innerHTML = '';
     for (var singleCheckbox of valueArr) {
-        innerHTML += `<label>${singleCheckbox.text}<input type="checkbox" value=${singleCheckbox.text}> </label>`
+        innerHTML += `<label>${singleCheckbox.text}<input data-value=${singleCheckbox.value} type="checkbox" value=${singleCheckbox.text}> </label>`
     }
     wrapper.innerHTML = innerHTML;
     //事件委托

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="a">A</button>
+<button id="b">B</button>
+<button id="c">C</button>
+
+<button id="d">D</button>
+<button id="e">E</button>
+<button id="f">F</button>
+
+
+<div id="contABC" style="width: 70px; border: 5px solid red; height: 30px;"></div>
+<div id="contDEF" style="width: 70px; border: 5px solid red; height: 30px;"></div>
+
+<script>
+    //btn改变 hash方法
+    var contABC = document.getElementById('contABC');
+    var contDEF = document.getElementById('contDEF');
+    var btns = document.querySelectorAll('button');
+    // for (var i=0; i< btns.length; i++) {
+    //     var abc='', def='';
+    //     if (i<3) {
+    //         btns[i].addEventListener ('click', function (e) {
+    //             abc = `${e.target.innerText}`;
+    //             window.location.hash = `/${abc}/${def}`;
+    //         })
+    //     } else {
+    //         btns[i].addEventListener ('click', function (e) {
+    //             def = `${e.target.innerText}`;
+    //             window.location.hash = `/${abc}/${def}`;
+    //         })
+    //     }
+    //     window.location.hash = `/${abc}/${def}`;
+    // }
+    //
+    //
+    // //渲染
+    // function render() {
+    //     var result = window.location.hash.slice(2);
+    //     var resultArray = result.split('/');
+    //         contABC.innerText = resultArray[0];
+    //         contDEF.innerText = resultArray[1]
+    // }
+    // document.addEventListener('DOMContentLoaded', render);
+    //
+    // window.onhashchange = render
+
+
+    //pushState方法
+    for (var i=0; i< btns.length; i++) {
+        var abc='', def='';
+        if (i<3) {
+            btns[i].addEventListener ('click', function (e) {
+                abc = `${e.target.innerText}`;
+                history.pushState({'abc':abc}, null, `#/${abc}/${def}`);
+                stateRender()
+            })
+        } else {
+            btns[i].addEventListener ('click', function (e) {
+                def = `${e.target.innerText}`;
+                history.pushState({'abc':abc}, null, `#/${abc}/${def}`);
+                stateRender()
+            })
+        }
+        history.pushState({'abc':abc}, null, `#/${abc}/${def}`);
+        stateRender()
+    }
+
+    function stateRender() {
+        var result = window.location.hash.slice(2);
+        var resultArray = result.split('/');
+            contABC.innerText = resultArray[0];
+            contDEF.innerText = resultArray[1]
+    }
+    window.onload = stateRender
+</script>
+</body>
+</html>

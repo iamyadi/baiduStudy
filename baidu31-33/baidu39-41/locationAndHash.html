@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LearnLocationAndHash</title>
+</head>
+<body>
+<button id="a">A</button>
+<button id="b">B</button>
+<button id="c">C</button>
+<div id="cont"></div>
+
+<script>
+    var div = document.getElementById('cont');
+    window.onhashchange = function (ev) {
+        render()
+    };
+    var btns = document.querySelectorAll('button');
+    // for (var btn of btns) {  //hash实现
+    //     btn.addEventListener('click', function (e) {
+    //         window.location.hash = e.target.innerText
+    //     })
+    // }
+    for (var btn of btns) { //pushstate实现
+        btn.addEventListener('click', function (e) {
+            history.pushState(e.target.innerText, null, `?${e.target.innerText}`);
+            render()
+            // window.location.hash = e.target.innerText
+        })
+    }
+    //渲染函数
+    function render() {
+        div.innerText = window.location.search.slice(1)
+        // div.innerText = window.location.hash.slice(1)
+    }
+    document.addEventListener('DOMContentLoaded', render);
+
+    // window.onload = function (ev) {
+    //     history.pushState(null, null)
+    // };
+    window.onpopstate = function (ev) {
+        render()
+    }
+</script>
+</body>
+</html>

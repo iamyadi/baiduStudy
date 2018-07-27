@@ -113,4 +113,46 @@ function handleCommodityData() {
     return data
 }
 
+// 根据hash值来勾选checkbox，之后渲染
+document.addEventListener('DOMContentLoaded', function () {
+    var hash = decodeURI(window.location.hash);
+    var hashList = hash.split('/').slice(1);
+    var count = 0;
+    var checkDoms = checkboxWrapper.querySelectorAll('input');
+    for (var has of hashList) {
+        if (has==='全选') {
+            count += 1
+        }
+    }
+    if (count === 2){
+        for (var check of checkDoms) {
+            check.checked = true
+        }
+    } else if (count === 0) {
+        for (var checkDom of checkDoms) {
+            if ( hashList.includes(checkDom.value)) {
+                checkDom.checked = true
+            }
+        }
+    } else if (count === 1) {
+        if (hashList.indexOf('全选') === 0) {
+            for (var j=0; j<checkDoms.length; j++) {
+                if ( j === 4) { continue }
+                else {
+                    if ( hashList.includes(checkDoms[j].value)) {
+                        checkDoms[j].checked = true
+                    }
+                }
+            }
+        } else {
+            for (var i=1; i<checkDoms.length; i++) {
+                if ( hashList.includes(checkDoms[i].value)) {
+                    checkDoms[i].checked = true
+                }
+            }
+        }
+    }
+    checkboxWrapper.onclick()
+});
+
 

@@ -1,6 +1,7 @@
 var show = true; //控制只有一个input
 function creatInputDom() {
     var saleTdAll = document.querySelectorAll('.saleTd');
+    //给每一个saleTd加click事件
     for ( var saleSingle of saleTdAll) {
         saleSingle.addEventListener('click', function (e) {
             if(e.target.children.length === 0 && show){
@@ -23,7 +24,8 @@ function creatInputDom() {
                 document.getElementById('cancel').addEventListener('click', function (ev) {
                     ev.stopPropagation();
                     ev.target.parentNode.innerHTML = data;
-                    show = true
+                    show = true;
+                    e.target.className = 'saleTd'
                 });
                 //给document加点击事件，判断是不是这个单元格
                 document.addEventListener('click', function (ev) {
@@ -47,8 +49,9 @@ function creatInputDom() {
                     if (verify(document.getElementById('input').value)) {
                         ev.target.parentNode.innerHTML = document.getElementById('input').value;
                     }
-                    show = true
-                })
+                    show = true;
+                    e.target.className = 'saleTd'
+                });
                 // 键盘事件
                 var keydown = function (ev) {
                     if (ev.keyCode === 27) {
