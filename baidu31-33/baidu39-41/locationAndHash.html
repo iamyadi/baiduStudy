@@ -23,6 +23,7 @@
     // }
     for (var btn of btns) { //pushstate实现
         btn.addEventListener('click', function (e) {
+
             history.pushState(e.target.innerText, null, `?${e.target.innerText}`);
             render()
             // window.location.hash = e.target.innerText
@@ -33,11 +34,12 @@
         div.innerText = window.location.search.slice(1)
         // div.innerText = window.location.hash.slice(1)
     }
-    document.addEventListener('DOMContentLoaded', render);
+    // document.addEventListener('DOMContentLoaded', render);
 
-    // window.onload = function (ev) {
-    //     history.pushState(null, null)
-    // };
+    window.onload = function (ev) {
+        history.pushState(null, null, `?`);
+        render()
+    };
     window.onpopstate = function (ev) {
         render()
     }
