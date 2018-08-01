@@ -1,4 +1,4 @@
-//button点击事件 保存到localStorage中
+//button点击事件 保存到localStorage中 遍历table，拿到数据
 var btn = document.getElementById('save');
 btn.onclick = function () {
     var data = [];

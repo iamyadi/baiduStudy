@@ -20,7 +20,7 @@ function creatInputDom() {
                         return true
                     }
                 }
-                // 取消按钮事件
+                // 取消 按钮 事件
                 document.getElementById('cancel').addEventListener('click', function (ev) {
                     ev.stopPropagation();
                     ev.target.parentNode.innerHTML = data;
