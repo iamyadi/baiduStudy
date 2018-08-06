@@ -1,2 +1,2 @@
 # baiduStudy
-this is for baidu EFE project
+this is for baidu IFE project
